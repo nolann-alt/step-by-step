@@ -14,7 +14,7 @@ public class Main {
         JFrame window = new JFrame("Snake"); // Pemet de crée une nouvelle fenêtre
         window.setSize(1200, 1200); // Taille de la fenêtre
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Permet de fermer la fenêtre et terminer l'execution en même temps
-        window.setResizable(false);
+        window.setResizable(false); // Permet de ne pas redimensionner la fenêtre
         window.setLocationRelativeTo(null); // Centre la fenêtre
 
         GamePanel panel = new GamePanel(); // Permet de faire un nouveau panneau graphique sur lequel on peut dessiner avec la class GamePanel

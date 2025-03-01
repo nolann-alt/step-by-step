@@ -28,10 +28,11 @@ public class GamePanel extends JPanel{
         timer.start();
     }
 
-    @Override
     /**
      * This method allows to draw the snake on the window
+     * @param g the graphic object used for drawing
      */
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); // Permet d'effacer l'écran avant de redessiner
 
@@ -46,14 +47,9 @@ public class GamePanel extends JPanel{
      * This method allows to move the snake on the window with the direction dx and dy
      */
     public void moveSnake() {
-        Point head = snakeBody.get(0); // On récupère la tête du snake
-        head.x += dx; // On déplace la tête horizontalement en ajoutant dx
-        head.y += dy; // On déplace la tête verticalement en ajoutant dy
-
-        for (int i = snakeBody.size(); i > 0; i--) {
-            Point current = snakeBody.get(i); // on récupère le cube actuel
-            Point previous = snakeBody.get(i-1); // on récupère le cube précédent
-            current.setLocation(previous.x, previous.y); // Pemet de déplacer le cube actuel à la place du précédent afin que le snake avance
-        }
+        Point head = snakeBody.get(0); // récupère la tête actuel
+        Point newHead = new Point(head.x + dx, head.y + dy); // fait une nouvelle tête en ajoutant dx et dy
+        snakeBody.add(0, newHead); // ajoute la nouvelle tête
+        snakeBody.remove(snakeBody.size()-1); // enlève le dernier cube
     }
 }
