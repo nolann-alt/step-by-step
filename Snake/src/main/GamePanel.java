@@ -11,7 +11,8 @@ import java.util.ArrayList;
  */
 public class GamePanel extends JPanel{
 
-    private Snake snake;
+    /** The snake */
+    private Snake snake; // Permet de créer un nouveau tableau de point pour le serpent (snake)
 
     /**
      * Constructor of the class GamePanel
@@ -40,7 +41,7 @@ public class GamePanel extends JPanel{
         super.paintComponent(g); // Permet d'effacer l'écran avant de redessiner
 
         // Parcours l'arrayList snakeBody ainsi que chacun de ses segment afin de les dessinés
-        for (Point segment : snake.getSnakeBody) {
+        for (Point segment : snake.getSnakeBody()) {
             g.setColor(Color.white); // Définis la couleur du cube
             g.fillRect(segment.x, segment.y, 20, 20); // Dessine le cube
 
