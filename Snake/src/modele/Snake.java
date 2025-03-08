@@ -37,8 +37,10 @@ public class Snake {
         snakeBody.remove(snakeBody.size() - 1); // Supprime le dernier segment
     }
 
-    public void changeDirection() {
-
+    public void changeDirection(int newDx, int newDy) {
+        if (dx != 0  && newDx != -dx || dy != 0 && newDy != -dy)
+            this.dx = newDx;
+            this.dy = newDy;
     }
 
     public ArrayList<Point> getSnakeBody () {

@@ -4,12 +4,14 @@ import modele.Snake;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 /**
  * This class allows to create a window for the game Snake
  */
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel  implements KeyListener{
 
     /** The snake */
     private Snake snake; // Permet de créer un nouveau tableau de point pour le serpent (snake)
@@ -29,7 +31,9 @@ public class GamePanel extends JPanel{
         });
         timer.start();
 
-        // Ajouter le keyListener
+        this.addKeyListener(this);  // Enregistre GamePanel comme écouteur de clavier
+        this.setFocusable(true);    // Permet au panneau de capter les événements clavier
+
     }
 
     /**
@@ -48,6 +52,18 @@ public class GamePanel extends JPanel{
         }
     }
 
+    @Override
+    public void keyPressed(KeyEvent event)  {
+        if(KeyEvent.VK_UP == event.getKeyCode())  {
+            snake.setDirection()
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent event)  {}
+
+    @Override
+    public void keyTyped(KeyEvent event)  {}
 
 
 }
