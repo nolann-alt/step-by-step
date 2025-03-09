@@ -29,8 +29,8 @@ public class Food{
         int newY;
 
         do {
-            newY = (int) (Math.random() * 60) * 20;
-            newX = (int) (Math.random() * 60) * 20;
+            newY = (int) (Math.random() * 30) * 20;
+            newX = (int) (Math.random() * 30) * 20;
 
             // Verifie si  la nourriture est sur le serpent
             for (Point segment : snake.getSnakeBody()) {

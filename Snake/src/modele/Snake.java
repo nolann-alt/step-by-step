@@ -37,7 +37,6 @@ public class Snake {
         snakeBody.remove(snakeBody.size() - 1); // Supprime le dernier segment
 
         if (apple.isEaten()) {
-            System.out.println(apple.isEaten());
             Point lastSegment = snakeBody.get(snakeBody.size() - 1);
             Point  newSegment = new Point(lastSegment.x - dx, lastSegment.y - dy);
             snakeBody.add(newSegment);
