@@ -2,10 +2,13 @@ package main;
 
 import modele.Food;
 import modele.Snake;
+import utils.ScoreManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.Time;
 
 /**
  * This class allows to create a window for the game Snake
@@ -19,6 +22,7 @@ public class GamePanel extends JPanel  implements KeyListener{
     private final int segmentSize = 20;
     /** The game over */
     private boolean gameOver = false;
+    private ScoreManager score = new ScoreManager();
 
     /**
      * Constructor of the class GamePanel
@@ -67,9 +71,17 @@ public class GamePanel extends JPanel  implements KeyListener{
         }
         Toolkit.getDefaultToolkit().sync(); // Assure la synchro sur certains OS
 
+        g.setColor(Color.white);
+        g.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        g.drawString("Score: " + score.getScore(), 10, 20);
+
         apple.draw(g);
         if (apple.isEaten()) {
+            score.incrementScore();
             apple.generateFood();
+            g.setColor(Color.white);
+            g.setFont(new Font("Times New Roman", Font.BOLD, 20));
+            g.drawString("Score: " + score.getScore(), 10, 20);
         }
 
         if (gameOver) {
@@ -122,6 +134,5 @@ public class GamePanel extends JPanel  implements KeyListener{
      */
     @Override
     public void keyTyped(KeyEvent event)  {}
-
 
 }

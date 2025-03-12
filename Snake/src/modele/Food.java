@@ -14,6 +14,11 @@ public class Food{
     private Snake snake;
     private final int appleSize;
 
+    /**
+     * Constructor of the class Food
+     * @param appleSize the size of the apple
+     * @param snake the snake
+     */
     public Food(int appleSize, Snake snake) {
         this.appleSize = appleSize;
         this.snake = snake;
@@ -21,6 +26,9 @@ public class Food{
         generateFood();
     }
 
+    /**
+     * This method allows to generate the food on the window
+     */
     public void generateFood() {
         boolean validPosition = true;
         int maxAttempts = 1000;
@@ -62,6 +70,10 @@ public class Food{
         g.fillOval(x, y, appleSize, appleSize);
     }
 
+    /**
+     * This method allows to check if the food is eaten
+     * @return true if the food is eaten, false otherwise
+     */
     public boolean isEaten() {
         boolean eaten = false;
 
@@ -72,10 +84,18 @@ public class Food{
         return eaten;
     }
 
+    /**
+     * This method allows to get the x position of the food
+     * @return the x position of the food
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * This method allows to get the y position of the food
+     * @return the y position of the food
+     */
     public int getY() {
         return y;
     }

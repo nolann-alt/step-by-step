@@ -1,7 +1,18 @@
 package utils;
 
 public class ScoreManager {
-    public static void main(String[] args) {
 
+    private int score;
+
+    public ScoreManager() {
     }
+
+    public void incrementScore() {
+        this.score++;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
 }
