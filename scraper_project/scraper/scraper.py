@@ -18,8 +18,10 @@ soup = BeautifulSoup(page.text, "html.parser")
 soup.find(class_='navbar').find_all('li')
 soup.select('.navbar > li')
 
-# extraction des jeux tendances
-listing_items = []
-listing_items_elements = soup.find_all('div', class_='listing-item')
+# extraction du jeu tendance
+item_forceBadge_categoryBest = []
+item_forceBadge_categoryBest_elements = soup.find_all('div', class_='listing-item')
 
-for listing_items in listing_items:
+for item_forceBadge_categoryBest in item_forceBadge_categoryBest:
+    # extrait le texte de listing_items
+    information = item_forceBadge_categoryBest.find('div', class_='information')
