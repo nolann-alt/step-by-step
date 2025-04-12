@@ -12,10 +12,11 @@ html, body {
 }
 
 nav {
-    position: fixed;
+    position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     top: 0;
     left: 0;
     height: 30vh;
@@ -30,8 +31,8 @@ nav ul {
     display: flex;
     flex-direction: row;
     justify-content: end;
+    height: 8vh;
     gap: 2vw;
-    height: 15vh;
     margin-top: 8vh;
     margin-left: 3vw;
     margin-right: 3vw;
@@ -39,6 +40,7 @@ nav ul {
 
 /* Ajoute un fond noir avec opacité 0.8 et une ombre quand on descend */
 nav.scrolled {
+    position: fixed;
     height: 20vh;
     background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -53,13 +55,24 @@ nav.scrolled ul {
     margin-top: 2vh;
     margin-left: 3vw;
     margin-right: 3vw;
-    transition: 0.3s ease-in-out;
+    transition: 0.3s ease
 }
 
 nav li {
-    height: 15vh;
     display: flex;
     align-items: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    transition: 0.3s ease
+}
+
+nav li:hover {
+    border-radius: 2vw;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+nav img, nav ul {
+    transition: all 0.3s ease;
 }
 
 .liens-navigation {
@@ -85,6 +98,16 @@ nav li {
     height: 15vh;
     width: 7.5vw;
     margin-top: 8vh;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    transition: 0.3s ease
+}
+
+nav.scrolled .liens-navigation-1 img {
+    display: flex;
+    height: 15vh;
+    width: 7.5vw;
+    margin-top: 2vh;
     margin-left: 3vw;
     margin-right: 3vw;
 }
