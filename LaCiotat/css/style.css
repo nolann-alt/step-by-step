@@ -64,19 +64,5 @@ nav li {
     left: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
-    z-index: -100;
-    pointer-events: none;
-}
-
-.youtube-iframe {
-    width: 100vw;
-    height: 56.25vw; /* Ratio 16:9 */
-    min-height: 100vh;
-    min-width: 177.77vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1000;
+    z-index: -1;
 }
