@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ease: "power1.out"
                 });
             }
+
         } else  {
 
             if (window.scrollY < topLocalisation) {
@@ -53,4 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 });
-console.log("script chargé")
+console.log("script chargé");
+
+
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        gsap.to(link.querySelector('.underline'), {
+            scaleX: 1, // Taille de l'élément c'est à dire la barre 1 = 100%
+            duration: 0.3,
+            ease: "power2.out" // Commence vite puis ralentit
+        });
+    });
+
+    link.addEventListener('mouseleave', () => {
+        gsap.to(link.querySelector('.underline'), {
+            scaleX: 0,
+            duration: 0.3,
+            ease: "power2.in" // Commence lentement puis accélère
+        });
+    });
+});
