@@ -1,65 +1,14 @@
+/** le score du joueur */
 let score = 0
-// let choix = null
-let taille = 0
-let listActuel = []
+/** la taille de la liste actuelle */
+let taille = listeMots.length
 
-// function choisirPhraseOuMots() {
-//     do {
-//         choix = prompt("Veux-tu la liste de phrases (1) ou la liste de mots (2) ?")
-//         if (choix !== "1" && choix !== "2") {
-//             window.alert("le choix est incorrect veuillez réessayer")
-//         }
-//     } while (choix !== "1" && choix !== "2")
-// }
-
-function lancerBoucleDeJeu() {
-    listActuel = listeMots
-
-    let i = 0
-    while (i < listActuel.length) {
-
-        let motUtilisateur = prompt("Entrez le mot numéro " + i+1 + " contenu la case du tableau : " + "["+ listActuel +"]")
-
-        switch (motUtilisateur) {
-            case listActuel[i]:
-                while (motUtilisateur !== listActuel[i]) {
-                    let motUtilisateur = prompt("Entrez le mot numéro " + i+1 + " contenu la case du tableau : " + "["+ listActuel +"]")
-                    if (motUtilisateur !== listActuel[i]) {
-                        window.alert("le mot est incorrect veuillez réessayer")
-                    }
-                }
-                score++
-                i++
-                console.log("le mot est correct, le score est de : " + score)
-                window.alert("le mot est correct, le score est de : " + score)
-                break
-            default:
-                score--
-                console.log("le mot est incorrect veuillez réessayer, le score est de : " + score)
-                window.alert("le mot est incorrect veuillez réessayer, le score est de : " + score)
-        }
-    }
-    return score
-}
-
-
-// function initialiserListe() {
-//     switch (choix) {
-//         case choix = "1":
-//             listActuel = listeMots
-//             taille = listeMots.length
-//             break
-//         case choix = "2":
-//             listActuel = listePhrases
-//             taille = listePhrases.length
-//             break
-//         default:
-//             console.log("La liste actuel a été changée")
-//     }
-//     return taille
-// }
-
-function afficherResultat(resultat, nbTotalMots) {
+/**
+ * Affiche le résultat du jeu dans la zone de score.
+ * @param resultat Le score obtenu par le joueur.
+ * @param nbTotalMots Le nombre total de mots ou phrases dans la liste.
+ */
+function afficherScore(resultat, nbTotalMots) {
     let zoneScore = document.querySelector(".zoneScore")
     let afficherResult = resultat + " / " + nbTotalMots
     zoneScore.innerHTML = `
@@ -67,8 +16,53 @@ function afficherResultat(resultat, nbTotalMots) {
     `
 }
 
+/**
+ * This function allow to display the word she has in parameter
+ * @param mot the word in parameter
+ */
+function afficherProposition(mot) {
+    let divZoneProposition = document.querySelector(".zoneProposition")
+    divZoneProposition.innerHTML = `${mot}`
+}
 
+/**
+ * lance le jeu en lançant la boucle de jeu et en affichant le résultat.
+ */
 function lancerJeu() {
-    lancerBoucleDeJeu()
-    afficherResultat(score, taille)
+    let i = 0
+
+    let inputEcriture = document.querySelector(".zoneSaisie #inputEcriture")
+    let valider = document.querySelector(".zoneSaisie #btnValiderMot")
+    afficherProposition(listeMots[i].valueOf())
+    valider.addEventListener("click", () => {
+        if (listeMots[i+1] === undefined) {
+            if (listeMots[i] === inputEcriture.value) {
+                score++
+            } else {
+                if (score > 0) {
+                    score--
+                }
+            }
+            afficherScore(score, taille)
+            afficherProposition("le jeu est fini !")
+            inputEcriture.value = ""
+            valider.disabled = true
+        } else {
+            if (listeMots[i] === inputEcriture.value) {
+                score++
+            } else {
+                if (score > 0) {
+                    score--
+                }
+            }
+            console.log(`le message est : ${inputEcriture.value}`)
+            console.log(`le mot numéro ${i+2} est : ${listeMots[i+1]}`)
+            afficherProposition(listeMots[i+1])
+            i++
+            afficherScore(score, taille)
+            inputEcriture.value = ""
+        }
+    })
+
+    afficherScore(score, taille)
 }
