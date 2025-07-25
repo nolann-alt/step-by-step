@@ -1,7 +1,9 @@
 /** le score du joueur */
 let score = 0
+/** The actual list */
+let listeProposition = listeMots;
 /** la taille de la liste actuelle */
-let taille = listeMots.length
+let taille = listeProposition.length
 
 /**
  * Affiche le résultat du jeu dans la zone de score.
@@ -33,10 +35,13 @@ function lancerJeu() {
 
     let inputEcriture = document.querySelector(".zoneSaisie #inputEcriture")
     let valider = document.querySelector(".zoneSaisie #btnValiderMot")
-    afficherProposition(listeMots[i].valueOf())
-    valider.addEventListener("click", () => {
-        if (listeMots[i+1] === undefined) {
-            if (listeMots[i] === inputEcriture.value) {
+    let btnRadios = document.querySelectorAll("input[type=radio]");
+
+    afficherProposition(listeProposition[i])
+
+    function validerRep() {
+        if (listeProposition[i + 1] === undefined) {
+            if (listeProposition[i] === inputEcriture.value) {
                 score++
             } else {
                 if (score > 0) {
@@ -45,10 +50,13 @@ function lancerJeu() {
             }
             afficherScore(score, taille)
             afficherProposition("le jeu est fini !")
-            inputEcriture.value = ""
+            inputEcriture.disabled = true;
+            for (let h = 0; h < btnRadios.length; h++) {
+                btnRadios[h].disabled = true;
+            }
             valider.disabled = true
         } else {
-            if (listeMots[i] === inputEcriture.value) {
+            if (listeProposition[i] === inputEcriture.value) {
                 score++
             } else {
                 if (score > 0) {
@@ -56,13 +64,46 @@ function lancerJeu() {
                 }
             }
             console.log(`le message est : ${inputEcriture.value}`)
-            console.log(`le mot numéro ${i+2} est : ${listeMots[i+1]}`)
-            afficherProposition(listeMots[i+1])
+            console.log(`le mot numéro ${i + 2} est : ${listeProposition[i + 1]}`)
+            afficherProposition(listeProposition[i + 1])
             i++
             afficherScore(score, taille)
             inputEcriture.value = ""
         }
+    }
+
+    inputEcriture.addEventListener('keyup', (e) => {
+        if (e.code === "Enter") {
+            validerRep();
+        }
+    });
+
+    valider.addEventListener("click", () => {
+        validerRep();
     })
+
+    for (let j = 0; j < btnRadios.length; j++) {
+        btnRadios[j].addEventListener("change", () => {
+            console.log(btnRadios[i].value)
+            if (btnRadios[j].value === "1") {
+                listeProposition = listeMots;
+                taille = listeMots.length;
+                afficherScore(score, taille)
+                afficherProposition(listeProposition[i]);
+                console.log(listeProposition);
+            } else {
+                listeProposition = listePhrases;
+                taille = listePhrases.length;
+                console.log("la taille ! " + taille)
+                afficherScore(score, taille)
+                afficherProposition(listeProposition[i]);
+                console.log(listeProposition);
+            }
+        });
+    }
 
     afficherScore(score, taille)
 }
+
+
+
