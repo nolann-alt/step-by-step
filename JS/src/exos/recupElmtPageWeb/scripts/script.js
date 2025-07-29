@@ -19,6 +19,17 @@ function afficherScore(resultat, nbTotalMots) {
 }
 
 /**
+ * This finction allow to display an email.
+ * @param nom the name of the user
+ * @param email the email of the user
+ * @param score the score of the user
+ */
+function afficherEmail(nom, email, score) {
+    let mailto = `mailto:${email}?subject=Partage du score Azertype&body=Salut, je suis ${nom} et je viens de réaliser le score ${score} sur le site d'Azertype !`
+    location.href = mailto
+}
+
+/**
  * This function allow to display the word she has in parameter
  * @param mot the word in parameter
  */
@@ -101,6 +112,31 @@ function lancerJeu() {
             }
         });
     }
+    const openBtn = document.getElementById("openPopup");
+    const popup = document.getElementById("popupForm");
+    const form = document.querySelector(".partageContainer .partagePopup form");
+
+    // Au chargemement de la page
+    popup.style.display = "none";
+
+    openBtn.onclick = () => {
+        popup.style.display = "block";
+    }
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        let nom = document.getElementById("nom");
+        let email = document.getElementById("email");
+        console.log(nom.value);
+        console.log(email.value);
+
+        let monScore = `${score} / ${taille}`;
+
+        afficherEmail(nom.value, email.value, monScore);
+
+        popup.style.display = "none";
+    });
+
 
     afficherScore(score, taille)
 }

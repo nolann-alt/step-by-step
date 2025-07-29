@@ -45,8 +45,28 @@
             <button id="btnValiderMot">Valider</button>
         </div>
 
-        <div class="zoneScore">
+        <div class="zoneScore"></div>
 
+        <button id="openPopup">Partager mon score</button>
+
+        <div id="popupForm" class="partageContainer">
+            <div class="partagePopup">
+
+                <!-- Le titre -->
+                <h2>Partager votre score</h2>
+
+                <form>
+                    <!-- Le nom de l'utilisateur -->
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" placeholder="Votre nom">
+
+                    <!-- L'email de l'utilisateur -->
+                    <label for="email">Avec qui voulez-vous partager votre score ?</label>
+                    <input type="text" id="email" name="email" placeholder="nom@domaine.com">
+
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
         </div>
         
     </main>
