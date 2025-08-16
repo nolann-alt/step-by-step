@@ -25,8 +25,7 @@ function afficherScore(resultat, nbTotalMots) {
  * @param score the score of the user
  */
 function afficherEmail(nom, email, score) {
-    let mailto = `mailto:${email}?subject=Partage du score Azertype&body=Salut, je suis ${nom} et je viens de réaliser le score ${score} sur le site d'Azertype !`
-    location.href = mailto
+    location.href = `mailto:${email}?subject=Partage du score Azertype&body=Salut, je suis ${nom} et je viens de réaliser le score ${score} sur le site d'Azertype !`
 }
 
 /**
@@ -132,11 +131,40 @@ function lancerJeu() {
 
         let monScore = `${score} / ${taille}`;
 
-        afficherEmail(nom.value, email.value, monScore);
-
-        popup.style.display = "none";
+        if (validerNom(nom) && validerEmail(email)) {
+            afficherEmail(nom.value, email.value, monScore);
+            popup.style.display = "none";
+        } else {
+            console.log("Erreur : l'email ou le nom n'est pas valide !");
+        }
     });
 
+    function validerNom(nom) {
+        let ret = true;
+        if (nom.value === "") {
+            nom.classList.add("error");
+            console.log("Erreur : le nom est invalide !")
+            ret = false;
+        } else {
+            nom.classList.remove("error");
+            ret = true;
+        }
+        return ret;
+    }
+
+    function validerEmail(email) {
+        let ret;
+        let expReg = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+")
+        if (!expReg.test(email.value)) {
+            email.classList.add("error");
+            console.log("Erreur : l'email est invalide !")
+            ret = false;
+        } else {
+            email.classList.remove("error");
+            ret = true;
+        }
+        return ret;
+    }
 
     afficherScore(score, taille)
 }
